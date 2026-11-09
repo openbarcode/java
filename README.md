@@ -11,6 +11,65 @@
 
 Barcode generation library for Java (Code 39, EAN, UPC).
 
+Install
+-------
+
+Maven:
+
+```xml
+<dependency>
+  <groupId>dev.openbarcode</groupId>
+  <artifactId>openbarcode</artifactId>
+  <version>2.0.0</version>
+</dependency>
+```
+
+Gradle:
+
+```groovy
+implementation 'dev.openbarcode:openbarcode:2.0.0'
+```
+
+Open Barcode has no runtime dependencies and targets Java 8 bytecode.
+
+Usage
+-----
+
+Each barcode is built from its code string. `barcode()` returns the module
+sequence, one `int` per module: `1` is a bar and `0` is a space. `code()`
+returns the code text, including the check digit.
+
+```java
+import com.floms.openbarcode.linear.Code39;
+import com.floms.openbarcode.linear.EAN;
+import com.floms.openbarcode.linear.UPC;
+
+UPC upc = new UPC("03600029145");      // 11 digits: check digit is computed
+upc.code();                             // "036000291452"
+int[] modules = upc.barcode();          // 95 modules
+
+EAN ean = new EAN("4006381333931");    // 13 digits: check digit is verified
+Code39 code39 = new Code39("hello");    // uppercased to "HELLO"
+```
+
+- `UPC` accepts 11 digits (UPC-A without a check digit) or 12 digits (with it).
+- `EAN` accepts 12 digits (EAN-13 without a check digit) or 13 digits (with it).
+- A supplied check digit is verified; a mismatch throws `IllegalArgumentException`.
+- `Code39` accepts 0-9, A-Z, space, and `- . $ / + %`. Other characters throw `IllegalArgumentException`.
+- The module sequence has no quiet zones. `Code39` includes one narrow space between adjacent characters, including the start and stop characters.
+
+Testing
+-------
+
+The project uses Maven and JUnit 5. To build and run the tests:
+
+```sh
+mvn -B verify
+```
+
+The tests check exact module sequences for known codes, check-digit
+computation, invalid input, and that barcode instances do not share state.
+
 Open Barcode is available in several languages:
 
 - Java: https://github.com/openbarcode/java

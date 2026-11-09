@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.openbarcode</groupId>
+  <artifactId>openbarcode</artifactId>
+  <version>2.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>Open Barcode for Java</name>
+  <description>Barcode generation library for Java: Code 39, EAN-13 and UPC-A. No runtime dependencies.</description>
+  <url>https://openbarcode.dev</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>Floms, LLC</name>
+    <url>https://openbarcode.dev</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Floms, LLC</name>
+      <organization>Floms, LLC</organization>
+      <organizationUrl>https://openbarcode.dev</organizationUrl>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://github.com/openbarcode/java</url>
+    <connection>scm:git:https://github.com/openbarcode/java.git</connection>
+    <developerConnection>scm:git:git@github.com:openbarcode/java.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Bytecode level 8 for broad compatibility; the library uses no newer APIs. -->
+    <maven.compiler.release>8</maven.compiler.release>
+    <junit.version>5.11.4</junit.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>
